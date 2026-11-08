@@ -1,0 +1,104 @@
+Skip to main content
+🎛️ Operator Controls
+
+Signal Input Mode:
+
+Pre-Generated Datasets
+
+Upload Custom CSV
+
+Live Interactive Synthesis
+
+⚙️ Hardware Parameters
+
+Power Detection Threshold (x Normalized RMS)
+
+2.50
+
+1.20
+
+10.00
+
+Consecutive Violation Limit (Cycles)
+
+5
+
+1
+
+20
+
+🔬 DSP Parameters
+
+FFT Window Function:
+
+STFT Resolution (Samples):
+
+AI-Driven RF Spectrum Monitoring SoC | Capstone Architecture
+
+Select Signal Scenario:
+
+Deploy
+📡 AI-Driven RF Spectrum Monitoring & Interference Detection System
+
+Active Ingestion: Clean QPSK (Normal Transmission) | Dual Domain Hardware-Software Architecture
+
+FRAME SIZE
+1024 IQ
+AI CLASSIFICATION
+QPSK (99.7%)
+THREAT STATUS
+NORMAL
+VERILOG FSM STATE
+MONITOR
+SPECTRUM OCCUPANCY
+22.9%
+
+📊 Spectral Analysis (FFT)
+
+🌊 2D Waterfall Spectrogram
+
+🎯 IQ & Phase Space
+
+🧠 AI Modulation Classifier
+
+⚡ Verilog Hardware Telemetry
+
+1024-Point Fast Fourier Transform (FFT) Power Spectrum
+−500
+−400
+−300
+−200
+−100
+0
+100
+200
+300
+400
+−80
+−70
+−60
+−50
+−40
+−30
+−20
+−10
+0
+Frequency [kHz]
+Power Spectral Density [dBFS]
+Occupancy Cutoff Threshold (-20 dBFS)
+
+Peak Frequency
+
+-16.6 kHz
+
+Occupied Bandwidth
+
+228.5 kHz
+
+Noise Floor Est.
+
+-39.6 dBFS
+
+Occupancy Ratio
+
+22.9%
