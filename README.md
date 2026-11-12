@@ -14,7 +14,7 @@
 
 ## 📑 Table of Contents
 1. [Executive Overview & Key Highlights](#-executive-overview--key-highlights)
-2. [👥 Two-Engineer Project Division & Responsibilities](#-two-engineer-project-division--responsibilities)
+2. [👥 Engineering Responsibilities & Architectural Roles](#-engineering-responsibilities--architectural-roles)
    - [💻 Akshay Kumar: Computer Science & Engineering (CSE) Lead](#-akshay-kumar-computer-science--engineering-cse-lead)
    - [⚡ Tanya Sana: Electronics & Communication Engineering (ECE) Lead](#-tanya-sana-electronics--communication-engineering-ece-lead)
 3. [🏛️ Dual-Domain System Architecture](#-dual-domain-system-architecture)
@@ -37,9 +37,8 @@
 11. [🛡️ Zero Data-Leakage Forensic ML Audit Report](#-zero-data-leakage-forensic-ml-audit-report)
 12. [🐳 Docker Containerization & Deployment](#-docker-containerization--deployment)
 13. [⚡ Quick Start & Reproduction Guide](#-quick-start--reproduction-guide)
-14. [🎓 Capstone Defense & Viva Voce Q&A Guide](#-capstone-defense--viva-voce-qa-guide)
-15. [📁 Complete Repository Structure](#-complete-repository-structure)
-16. [📜 License](#-license)
+14. [📁 Complete Repository Structure](#-complete-repository-structure)
+15. [📜 License](#-license)
 
 ---
 
@@ -68,9 +67,9 @@ This project presents an integrated, dual-domain cognitive RF monitoring archite
 
 ---
 
-## 👥 Two-Engineer Project Division & Responsibilities
+## 👥 Engineering Responsibilities & Architectural Roles
 
-This interdisciplinary capstone project was designed, implemented, and verified collaboratively between a **Computer Science & Engineering (CSE)** student and an **Electronics & Communication Engineering (ECE)** student.
+This project is architected with a strict modular co-design division across **Computer Science & Engineering (CSE)** and **Electronics & Communication Engineering (ECE)**:
 
 ```
 +---------------------------------------------------------------------------------------------------------+
@@ -601,26 +600,6 @@ python rf_cli.py serve --port 8000
 
 ---
 
-## 🎓 Capstone Defense & Viva Voce Q&A Guide
-
-### For the CSE Examiner (Akshay Kumar):
-1. **Q: Why is differential phase preprocessing essential for Automatic Modulation Classification?**
-   - *A: In wireless channels, oscillator mismatch and Doppler shifts introduce an unknown time-varying carrier phase offset $\theta(t)$. Raw IQ constellations rotate unpredictably, causing QPSK and 8PSK symbols to overlap. By computing the conjugate product $p[n] = z[n] \cdot z^*[n-1]$, the static phase offset $\theta_0$ cancels out identically ($e^{j\theta_0} \cdot e^{-j\theta_0} = 1$). The network learns relative phase transitions $(\Delta I = \cos\Delta\phi, \Delta Q = \sin\Delta\phi)$ rather than absolute coordinates, rendering the classifier rotation-invariant.*
-2. **Q: How does the system handle adversarial jammers without generating false positive modulation predictions?**
-   - *A: Neural networks with softmax outputs are known to be overconfident on out-of-distribution inputs. We designed a dual-stage threat gate that computes the Shannon prediction entropy $H = -\sum p_i \log_2(p_i)$. If a signal does not conform to known digital modulation geometry (e.g. broadband chirp or noise barrage), the entropy exceeds $1.6\text{ bits}$, triggering an emergency threat alert and overriding the classifier.*
-3. **Q: How was edge inference throughput optimized for real-time streaming?**
-   - *A: We converted the eager PyTorch graph to an optimized TorchScript JIT compiled trace (`export_engine.py`). This eliminated Python interpreter overhead and enabled operator fusion, decreasing latency from $1.07\text{ ms}$ to $0.72\text{ ms}$ ($+32.4\%$ speedup) and enabling a peak throughput exceeding $1380\text{ frames/second}$ on standard CPU cores.*
-
-### For the ECE Examiner (Tanya Sana):
-1. **Q: Why compute power $P = I^2 + Q^2$ instead of envelope magnitude $\sqrt{I^2+Q^2}$ in synthesizable Verilog?**
-   - *A: Calculating the true square root in hardware requires either an iterative CORDIC engine (consuming 16–18 clock cycles) or large block RAM lookup tables. By pre-squaring the detection threshold ($P_{\text{thresh}} = \text{Threshold}^2$), we evaluate threshold violations using only two 16-bit DSP multipliers and a 33-bit adder in a single clock cycle, shrinking reaction latency from 18 cycles to 1 cycle.*
-2. **Q: How does the hardware FSM prevent false alarms caused by random thermal Gaussian spikes?**
-   - *A: The `abnormal_counter.v` module implements a saturating accumulator with hysteresis. An isolated thermal noise spike increments the counter to 1, but the FSM remains in `MONITOR`. The power must continuously exceed $P_{\text{thresh}}$ for $N$ consecutive clock cycles (e.g. 5 cycles) before the FSM asserts `anomaly_limit_reached` and transitions to `ALERT`.*
-3. **Q: What is the significance of the Q1.15 fixed-point format?**
-   - *A: Floating-point arithmetic on FPGAs incurs significant logic overhead and routing delays. Q1.15 format uses 1 sign bit and 15 fractional bits, accurately representing normalized baseband signals in the range $[-1.0, +0.9999]$ using signed 16-bit integers ($[-32768, +32767]$) that directly map into Xilinx DSP48E1 hard multiplier slices.*
-
----
-
 ## 📁 Complete Repository Structure
 
 ```
@@ -684,8 +663,8 @@ RF_Spectrum_Monitoring_System/
 │   ├── eda_playground_design.sv    # Cloud synthesis package (Design)
 │   └── eda_playground_testbench.sv # Cloud testbench package (Testbench)
 │
-├── docs/                   # Documentation & Capstone Slides
-│   └── presentation/       # 20-slide capstone defense presentation (.pptx)
+├── docs/                   # Documentation & Architecture Slides
+│   └── presentation/       # Technical architecture presentation (.pptx)
 │
 ├── Dockerfile              # Multi-stage production container definition
 ├── docker-compose.yml      # Orchestration for FastAPI & Streamlit services

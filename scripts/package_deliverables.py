@@ -2,11 +2,11 @@
 =============================================================================
 Script: package_deliverables.py
 Project: AI-Driven RF Signal Classification & Interference Detection System
-Utility: Automated Capstone Archive & Deliverable Packager
+Utility: Automated Release Distribution & Deliverable Packager
 =============================================================================
 
-This utility creates a clean, complete .ZIP archive of the entire capstone project,
-ready for academic submission, email distribution, or archiving.
+This utility creates a clean, complete .ZIP archive of the entire project,
+ready for release distribution, customer deployment, or archiving.
 """
 
 import os
@@ -18,11 +18,11 @@ def create_deliverables_zip():
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     parent_dir = os.path.dirname(base_dir)
     
-    zip_filename = "AI_Driven_RF_Spectrum_Monitoring_System_Deliverables.zip"
+    zip_filename = "AI_Driven_RF_Spectrum_Monitoring_System_Release.zip"
     zip_dest_path = os.path.join(parent_dir, zip_filename)
     
     print("=" * 80)
-    print("PACKAGING CAPSTONE DELIVERABLES INTO STANDALONE ZIP ARCHIVE")
+    print("PACKAGING SYSTEM DELIVERABLES INTO STANDALONE ZIP ARCHIVE")
     print("=" * 80)
     
     # Exclude temporary cache folders (__pycache__, .git, etc.)

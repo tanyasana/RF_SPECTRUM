@@ -1,19 +1,19 @@
-# 3-Minute Live Demonstration Walkthrough Script
+# System Live Demonstration Walkthrough Guide
 
-**Project Title:** AI-Driven RF Signal Classification & Interference Detection System  
-**Audience:** Evaluation Committee, Academic Faculty, or Technical Defense Panel  
-**Time Limit:** 3 to 5 Minutes  
-**Tool Used:** Streamlit Web Dashboard ([`launch_dashboard.bat`](file:///c:/projects/spectrum%20projects/RF_Spectrum_Monitoring_System/launch_dashboard.bat) or [http://localhost:8501](http://localhost:8501))
+**Project:** AI-Driven RF Signal Classification & Interference Detection System  
+**Audience:** Technical Leadership, System Integrators & Engineering Review Panel  
+**Time:** 3 to 5 Minutes  
+**Tool Used:** Streamlit Web Console (`launch_dashboard.bat` or `http://localhost:8501`)
 
 ---
 
-## 🎬 Pre-Demo Setup (Before Starting)
-1. Double-click [`launch_dashboard.bat`](file:///c:/projects/spectrum%20projects/RF_Spectrum_Monitoring_System/launch_dashboard.bat) or run:
+## 🎬 Pre-Demo Setup
+1. Double-click `launch_dashboard.bat` or run:
    ```bash
-   streamlit run dashboard/app.py
+   python rf_cli.py dashboard
    ```
 2. Open your web browser to **`http://localhost:8501`**.
-3. Maximize the window (or press `F11` for full-screen presentation mode).
+3. Maximize the window for full-screen presentation mode.
 
 ---
 
@@ -21,8 +21,8 @@
 
 ### Action 1: Point to the Top Banner & Select Clean QPSK
 * **Sidebar:** Select `Pre-Generated Datasets` $\rightarrow$ `Clean QPSK (Normal Transmission)`.
-* **What to Say:**
-  > *"Good morning committee. Today I am demonstrating our Hardware-Software Co-Design for real-time RF spectrum monitoring and automated threat detection. At the top of the dashboard, you see our live telemetry banners: active sample count, AI classification with confidence score, threat status badge, Verilog hardware FSM state, and monitored spectrum occupancy."*
+* **Talking Points:**
+  > *"Welcome. Today I am demonstrating our Hardware-Software Co-Design for real-time RF spectrum monitoring and automated threat detection. At the top of the dashboard are live telemetry banners: active sample count, AI classification with confidence score, threat status badge, Verilog hardware FSM state, and monitored spectrum occupancy."*
 
 ### Action 2: Show Tab 1 (Spectral Analysis) & Tab 3 (Constellation)
 * **Click Tab 1 (Spectral Analysis):**

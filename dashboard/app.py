@@ -227,7 +227,7 @@ with st.sidebar:
     stft_nperseg = st.selectbox("STFT Resolution (Samples):", [64, 128, 256], index=1)
     
     st.markdown("---")
-    st.caption("AI-Driven RF Spectrum Monitoring SoC | Capstone Architecture")
+    st.caption("AI-Driven RF Spectrum Monitoring SoC | Hardware-Software Co-Design")
 
 
 # -----------------------------------------------------------------------------
