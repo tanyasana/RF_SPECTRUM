@@ -1,18 +1,27 @@
 # AI-Driven RF Spectrum Monitoring & Interference Detection System
-# Core Dependencies
+# Core Dependencies Manifest
 
-# Numerical & DSP
+# Numerical & DSP Processing
 numpy>=1.24.0
 scipy>=1.10.0
 matplotlib>=3.7.0
 pandas>=2.0.0
 
-# Deep Learning (Optional / Phase 7)
+# Deep Learning AMC Engine
 torch>=2.0.0
 
-# Interactive Dashboard
+# Interactive Web HMI Console
 streamlit>=1.25.0
 plotly>=5.15.0
 
-# Hardware Simulation Bridge
+# Software Architecture & REST Microservice (CSE)
+fastapi>=0.100.0
+uvicorn>=0.23.0
+pydantic>=2.0.0
+
+# Automated Quality Assurance & Testing
+pytest>=7.4.0
+httpx>=0.24.0
+
+# Hardware Simulation Bridge & Deliverables
 python-pptx>=1.0.0
