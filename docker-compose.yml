@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  rf-dashboard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rf_spectrum_dashboard
+    restart: unless-stopped
+    ports:
+      - "8501:8501"
+    environment:
+      - STREAMLIT_SERVER_PORT=8501
+      - STREAMLIT_SERVER_ADDRESS=0.0.0.0
+    command: ["python", "-m", "streamlit", "run", "dashboard/app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+
+  rf-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: rf_spectrum_api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    command: ["python", "-m", "uvicorn", "api.server:app", "--host", "0.0.0.0", "--port", "8000"]
