@@ -86,11 +86,11 @@ def compute_fft(signal: np.ndarray, sample_rate: float = 1e6,
     
     # 1. Apply Window Function to reduce FFT edge discontinuity
     if window == "hann":
-        win = np.hanning(num_samples)
+        win = sp_signal.windows.hann(num_samples) if hasattr(sp_signal, "windows") else np.hanning(num_samples)
     elif window == "hamming":
-        win = np.hamming(num_samples)
+        win = sp_signal.windows.hamming(num_samples) if hasattr(sp_signal, "windows") else np.hamming(num_samples)
     elif window == "blackman":
-        win = np.blackman(num_samples)
+        win = sp_signal.windows.blackman(num_samples) if hasattr(sp_signal, "windows") else np.blackman(num_samples)
     else:
         win = np.ones(num_samples)
         

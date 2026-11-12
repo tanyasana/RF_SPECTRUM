@@ -39,6 +39,22 @@ from ai_model.classifier import RFSignalClassifier
 from ai_model.dataset_builder import compute_differential_phase_features, generate_symbols_for_class, LABEL_MAP
 
 
+def render_chart(fig):
+    """Renders Plotly chart with responsive container width across Streamlit versions."""
+    try:
+        st.plotly_chart(fig, width="stretch")
+    except (TypeError, ValueError):
+        st.plotly_chart(fig, use_container_width=True)
+
+
+def render_dataframe(df):
+    """Renders DataFrame with responsive container width across Streamlit versions."""
+    try:
+        st.dataframe(df, width="stretch")
+    except (TypeError, ValueError):
+        st.dataframe(df, use_container_width=True)
+
+
 # -----------------------------------------------------------------------------
 # 1. STREAMLIT PAGE CONFIGURATION & DARK CYBER THEME
 # -----------------------------------------------------------------------------
@@ -452,7 +468,7 @@ if len(i_samples) > 0 and len(q_samples) > 0:
             height=400,
             hovermode="x unified"
         )
-        st.plotly_chart(fig_fft, use_container_width=True)
+        render_chart(fig_fft)
         
         # Spectral Info Columns
         sc1, sc2, sc3, sc4 = st.columns(4)
@@ -491,7 +507,7 @@ if len(i_samples) > 0 and len(q_samples) > 0:
             margin=dict(l=40, r=40, t=30, b=40),
             height=450
         )
-        st.plotly_chart(fig_spec, use_container_width=True)
+        render_chart(fig_spec)
         st.caption("ℹ️ Swept chirps appear as diagonal trajectories; pulsed interference manifests as horizontal energy flashes.")
 
     # -------------------------------------------------------------------------
@@ -522,7 +538,7 @@ if len(i_samples) > 0 and len(q_samples) > 0:
                 margin=dict(l=30, r=30, t=20, b=30),
                 height=380
             )
-            st.plotly_chart(fig_iq, use_container_width=True)
+            render_chart(fig_iq)
             
         with c_col2:
             st.markdown("##### Differential Phase Space (ΔQ vs. ΔI)")
@@ -542,7 +558,7 @@ if len(i_samples) > 0 and len(q_samples) > 0:
                 margin=dict(l=30, r=30, t=20, b=30),
                 height=380
             )
-            st.plotly_chart(fig_diff, use_container_width=True)
+            render_chart(fig_diff)
             
         st.info("💡 **Phase Invariance Proof:** Notice how the Differential Phase Space organizes symbol jumps into orthogonal coordinates `{0, ±1}`, completely canceling static carrier rotation angles (θ₀).")
 
@@ -575,7 +591,7 @@ if len(i_samples) > 0 and len(q_samples) > 0:
                 margin=dict(l=30, r=30, t=20, b=30),
                 height=320
             )
-            st.plotly_chart(fig_probs, use_container_width=True)
+            render_chart(fig_probs)
             
         with ai_col2:
             st.markdown("##### Threat Diagnostic Engine")
@@ -635,7 +651,7 @@ if len(i_samples) > 0 and len(q_samples) > 0:
             margin=dict(l=40, r=40, t=40, b=30),
             showlegend=False
         )
-        st.plotly_chart(fig_hw, use_container_width=True)
+        render_chart(fig_hw)
         
         # Hardware Summary Metrics
         h1, h2, h3, h4 = st.columns(4)
@@ -668,10 +684,10 @@ if len(i_samples) > 0 and len(q_samples) > 0:
             
         with d_col2:
             st.markdown("##### 💻 Run on EDA Playground / EPWave")
-            st.caption("Copy `testbench/eda_playground_top.v` into [edaplayground.com](https://www.edaplayground.com/) with Icarus Verilog to inspect full .vcd waveform timing.")
+            st.caption("Copy `testbench/eda_playground_design.sv` and `testbench/eda_playground_testbench.sv` into [edaplayground.com](https://www.edaplayground.com/) with Icarus Verilog to inspect full .vcd waveform timing.")
         
         with st.expander("🔍 Inspect Cycle-by-Cycle Register Telemetry (First 50 Cycles)"):
-            st.dataframe(df_trace.head(50), use_container_width=True)
+            render_dataframe(df_trace.head(50))
 
 else:
     st.warning("⚠️ No signal data loaded. Please select or synthesize an IQ signal from the sidebar.")
