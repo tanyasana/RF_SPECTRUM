@@ -15,8 +15,8 @@
 ## 📑 Table of Contents
 1. [Executive Overview & Key Highlights](#-executive-overview--key-highlights)
 2. [👥 Engineering Responsibilities & Architectural Roles](#-engineering-responsibilities--architectural-roles)
-   - [💻 Akshay Kumar: Computer Science & Engineering (CSE) Lead](#-akshay-kumar-computer-science--engineering-cse-lead)
-   - [⚡ Tanya Sana: Electronics & Communication Engineering (ECE) Lead](#-tanya-sana-electronics--communication-engineering-ece-lead)
+   - [⚡ Taniya Sana: Electronics & Communication Engineering (ECE) Lead](#-taniya-sana-electronics--communication-engineering-ece-lead)
+   - [💻 Akshay Kumar Hudedmani: Computer Science & Engineering (CSE) Lead](#-akshay-kumar-hudedmani-computer-science--engineering-cse-lead)
 3. [🏛️ Dual-Domain System Architecture](#-dual-domain-system-architecture)
 4. [🖥️ Streamlit Interactive Web HMI Console (Live Screenshots)](#-streamlit-interactive-web-hmi-console-live-screenshots)
 5. [🧠 Machine Learning Subsystem: 1D-CNN AMC & Edge Optimization](#-machine-learning-subsystem-1d-cnn-amc--edge-optimization)
@@ -69,34 +69,62 @@ This project presents an integrated, dual-domain cognitive RF monitoring archite
 
 ## 👥 Engineering Responsibilities & Architectural Roles
 
-This project is architected with a strict modular co-design division across **Computer Science & Engineering (CSE)** and **Electronics & Communication Engineering (ECE)**:
+This project is architected with a strict modular co-design division across **Electronics & Communication Engineering (ECE)** and **Computer Science & Engineering (CSE)**:
 
 ```
 +---------------------------------------------------------------------------------------------------------+
 |                                AI-DRIVEN RF SPECTRUM MONITORING SYSTEM                                  |
 +----------------------------------------------------+----------------------------------------------------+
-|         💻 AKSHAY KUMAR (CSE COLLABORATOR)         |          ⚡ TANYA SANA (ECE COLLABORATOR)           |
-|      AI, Software Architecture, REST API & HMI     |       Hardware, RF Physical Layer & DSP Lead       |
+|       ⚡ TANIYA SANA (ECE LEAD & ARCHITECT)        |     💻 AKSHAY KUMAR HUDEDMANI (CSE COLLABORATOR)   |
+|       Hardware RTL, RF Physical Layer & DSP        |      AI, Software Architecture, REST API & HMI     |
 +----------------------------------------------------+----------------------------------------------------+
-| • 1D-CNN PyTorch Neural Network Architecture       | • RF Complex Baseband IQ Physics Formulation       |
-| • Differential Phase Invariant Feature Extraction  | • BPSK, QPSK, 8PSK, 16-QAM Mathematical Modeling  |
-| • Cosine Annealing Learning Rate Training Pipeline | • AWGN Channel Simulation (-6 dB to +24 dB SNR)    |
-| • Shannon Prediction Entropy Threat Gate (OOD)     | • 1024-Point FFT & Welch PSD Spectral Math Engine  |
-| • Statistical PAPR & Kurtosis Anomaly Classifier   | • 2D STFT Waterfall Spectrogram Transforms         |
-| • Edge TorchScript JIT & ONNX Optimization Engine  | • 6 Synthesizable Verilog RTL Core Modules (IEEE)  |
-| • Production FastAPI Asynchronous REST Microservice| • Q1.15 Fixed-Point Hardware Multiplier Design     |
-| • Unified Multi-Command CLI Utility (`rf_cli.py`)  | • 4-State Moore Hardware Threat FSM Controller     |
-| • Automated 17-Test Pytest Regression Suite        | • Cycle-Accurate Verilog Testbenches & VCD Timing  |
-| • Full-Stack Reactive Streamlit Web HMI Console    | • FPGA Synthesis & Resource Utilization (Artix-7)  |
-| • Multi-Stage Docker & Compose Containerization    | • Hardware-Software Q1.15 Telemetry Bridge         |
+| • RF Complex Baseband IQ Physics Formulation       | • 1D-CNN PyTorch Neural Network Architecture       |
+| • BPSK, QPSK, 8PSK, 16-QAM Constellation Modeling  | • Differential Phase Invariant Feature Extraction  |
+| • AWGN Channel Simulation (-6 dB to +24 dB SNR)    | • Cosine Annealing Learning Rate Training Pipeline |
+| • Pulsed Burst & LFM Swept Chirp Jammer Modeling   | • Shannon Prediction Entropy Threat Gate (OOD)     |
+| • 1024-Point FFT & Welch PSD Spectral Math Engine  | • Statistical PAPR & Kurtosis Anomaly Classifier   |
+| • 2D STFT Waterfall Spectrogram Transforms         | • Edge TorchScript JIT & ONNX Optimization Engine  |
+| • Over-the-Air SDR Binary Ingestion (RTL-SDR/USRP) | • Production FastAPI Asynchronous REST Microservice|
+| • 6 Synthesizable Verilog RTL Core Modules (IEEE)  | • Unified Multi-Command CLI Utility (`rf_cli.py`)  |
+| • Single-Cycle Q1.15 Hardware Multiplier Design    | • Automated 17-Test Pytest Regression Suite        |
+| • 4-State Moore Hardware Threat FSM Controller     | • Full-Stack Reactive Streamlit Web HMI Console    |
+| • Cycle-Accurate Verilog Testbenches & VCD Timing  | • Multi-Stage Docker & Compose Containerization    |
+| • FPGA Synthesis & Resource Utilization (Artix-7)  | • 6-Stage System Integration Verification Suite    |
 +----------------------------------------------------+----------------------------------------------------+
 ```
 
 ---
 
-### 💻 Akshay Kumar: Computer Science & Engineering (CSE) Lead
+### ⚡ Taniya Sana: Electronics & Communication Engineering (ECE) Lead
 
-As the **CSE Collaborator and Software Architect**, Akshay Kumar led the end-to-end design of the artificial intelligence subsystem, edge inference optimization, cloud microservices, software testing, and full-stack web console:
+As the **ECE Lead and Hardware Architect**, **Taniya Sana** spearheaded the core physical layer formulation, digital hardware circuit design, digital signal processing pipelines, fixed-point quantization, and FPGA synthesis:
+
+1. **RF Physical Layer & Signal Physics Formulation (`python/signal_generator.py`):**
+   - Formulated the complex baseband representation of modulated RF carriers:
+     $$s(t) = I(t)\cos(2\pi f_c t) - Q(t)\sin(2\pi f_c t) \implies \tilde{s}(t) = I(t) + jQ(t)$$
+   - Modeled 4 standard digital modulation constellations from first principles: **BPSK** ($0^\circ, 180^\circ$), **QPSK** ($45^\circ, 135^\circ, 225^\circ, 315^\circ$), **8PSK** (8 circular states at $45^\circ$ increments), and **16-QAM** ($4 \times 4$ amplitude-phase grid).
+   - Calibrated Additive White Gaussian Noise (AWGN) channel models across SNR sweeps from $-6\text{ dB}$ to $+24\text{ dB}$ along with Carrier Frequency Offset (CFO) and phase noise impairments.
+2. **Electronic Warfare & Threat Injection Modeling:**
+   - Designed physical-layer models for **Pulsed Burst Interference** (high-energy transient RF surges with sharp rise/fall edges) and **Swept Chirp Jammers** (continuous Linear Frequency Modulation sweeps with chirp rate $\mu = B / T_{\text{chirp}}$).
+3. **Digital Signal Processing (DSP) Mathematical Pipeline (`python/fft_analysis.py`, `python/spectrogram.py`, `python/sdr_converter.py`):**
+   - Developed the **1024-Point Fast Fourier Transform (FFT)** calibrated to $\text{dBFS}$ with Hann, Hamming, and Blackman tapering windows to suppress spectral leakage sidelobes.
+   - Implemented **Welch's Power Spectral Density (PSD)** with $50\%$ overlapping segments and dynamic **99% Occupied Bandwidth (OBW)** & **Channel Occupancy %** algorithms.
+   - Formulated **2D Short-Time Fourier Transform (STFT)** time-frequency waterfall spectrogram matrices $S(t, f)$.
+   - Engineered over-the-air SDR binary capture ingestion supporting **RTL-SDR (`uint8`), HackRF/BladeRF (`int8`), Ettus USRP (`int16`), and GNU Radio (`complex64`)**.
+4. **Synthesizable Verilog RTL Digital Architecture (6 Modules in `verilog/`):**
+   - Architected and verified 6 synthesizable **IEEE 1364-2001 Verilog** modules: `iq_register.v`, `magnitude_calculator.v`, `threshold_detector.v`, `abnormal_counter.v`, `detection_fsm.v`, and `spectrum_top.v`.
+   - **Key Hardware Optimization:** Achieved single-cycle instantaneous power computation ($P[n] = I[n]^2 + Q[n]^2$) using two parallel $16 \times 16 \rightarrow 32$-bit hardware multipliers and pre-squared thresholds, completely eliminating 18-cycle iterative CORDIC square-root latency.
+   - Engineered a **4-State Moore Finite State Machine (`IDLE`, `MONITOR`, `ALERT`, `REPORT`)** backed by a saturating fault counter with hysteresis to eliminate false triggers from isolated thermal Gaussian spikes.
+5. **Fixed-Point Hardware-Software Bridge & FPGA Synthesis (`python/verilog_bridge.py`, `testbench/`):**
+   - Designed the **Q1.15 fixed-point quantization schema** ($[-1.0, +0.9999] \rightarrow [-32768, +32767]$) and automated `$readmemh` hexadecimal vector export (`sim_input.mem`) for Hardware-in-the-Loop verification.
+   - Authored cycle-accurate Verilog testbenches (`tb_spectrum_top.v`, `eda_playground_design.sv`, `eda_playground_testbench.sv`) with VCD waveform generation.
+   - Targeted the **Xilinx Artix-7 (XC7A100TCSG324-1)** FPGA, consuming only **118 Slice LUTs ($0.19\%$)**, **95 Flip-Flops ($0.07\%$)**, and **2 DSP48E1 slices ($0.83\%$)** while achieving **$f_{\max} = 184.2\text{ MHz}$** and **$21.7\text{ ns}$ deterministic reaction latency**.
+
+---
+
+### 💻 Akshay Kumar Hudedmani: Computer Science & Engineering (CSE) Lead
+
+As the **CSE Collaborator and Software Architect**, **Akshay Kumar Hudedmani** led the end-to-end design of the artificial intelligence subsystem, edge inference optimization, cloud microservices, software testing, and full-stack web console:
 
 1. **1D-CNN Automatic Modulation Classifier (AMC):**
    - Architected a temporal 1D-CNN in PyTorch ingesting 4-channel input tensors $\mathbf{X} \in \mathbb{R}^{B \times 4 \times 128}$.
@@ -119,29 +147,6 @@ As the **CSE Collaborator and Software Architect**, Akshay Kumar led the end-to-
    - Authored 17 comprehensive automated unit and integration tests covering DSP algorithms, neural network tensors, Verilog simulation, and REST endpoints.
 7. **Full-Stack Streamlit Web HMI Console (`dashboard/app.py`):**
    - Built a reactive cyber-themed dashboard with dynamic KPI cards, interactive Plotly visualizations, live signal synthesis, and CSV trace exporters.
-
----
-
-### ⚡ Tanya Sana: Electronics & Communication Engineering (ECE) Lead
-
-As the **ECE Collaborator and Hardware Architect**, Tanya Sana directed the physical layer formulation, digital hardware circuit design, digital signal processing pipelines, and FPGA synthesis:
-
-1. **RF Physical Layer & Signal Formulation:**
-   - Formulated the complex baseband representation:
-     $$s(t) = I(t)\cos(2\pi f_c t) - Q(t)\sin(2\pi f_c t) \implies \tilde{s}(t) = I(t) + jQ(t)$$
-   - Modeled digital constellations (BPSK, QPSK, 8PSK, 16-QAM) and electronic warfare threats (Pulsed Burst Interference, Linear Frequency Modulated Swept Chirp Jammer).
-   - Calibrated Additive White Gaussian Noise (AWGN) channel models across SNR sweeps from $-6\text{ dB}$ to $+24\text{ dB}$.
-2. **Digital Signal Processing (DSP) Mathematical Pipeline:**
-   - Developed the 1024-point Fast Fourier Transform (FFT) with Hann, Hamming, and Blackman tapering windows to eliminate spectral leakage.
-   - Implemented Welch's Power Spectral Density (PSD) and dynamic Occupied Bandwidth (OBW) algorithms.
-   - Formulated 2D Short-Time Fourier Transform (STFT) waterfall spectrograms.
-3. **Synthesizable Verilog RTL Digital Architecture (6 Modules in `verilog/`):**
-   - Designed 6 synthesizable IEEE 1364-2001 Verilog modules (`iq_register.v`, `magnitude_calculator.v`, `threshold_detector.v`, `abnormal_counter.v`, `detection_fsm.v`, `spectrum_top.v`).
-   - Achieved single-cycle power calculation ($P = I^2 + Q^2$) using parallel hardware multipliers, completely eliminating CORDIC square root latency.
-   - Engineered a 4-state Moore Finite State Machine with saturating counter hysteresis to filter thermal noise spikes.
-4. **FPGA Synthesis & Fixed-Point Verification:**
-   - Established the Q1.15 fixed-point quantization schema ($[-1.0, +1.0] \rightarrow [-32768, +32767]$).
-   - Targeted the Xilinx Artix-7 (XC7A100T) FPGA, consuming only **118 Slice LUTs ($0.19\%$)** and achieving $f_{\max} = 184.2\text{ MHz}$.
 
 ---
 
